@@ -1,5 +1,5 @@
 //dynamic size of the board 
-const size = {height:20 , width:20};
+const size = {height:10 , width:10};
 
 //the board element
 const board = document.getElementById("board");
@@ -20,10 +20,10 @@ for(let i = 0 ; i < size.height ; i++){
 }
 
 
-//generate the snake head in the middle of the board
+//initiate the snake object 
 let y = Math.floor(size.height/2);
 let x = Math.floor(size.width/2);
-const snake = {length: 2 , x , y };
+const snake = {length: 2 , x , y ,direction:"up"};
 snake.headCell = document.getElementById("cell-"+snake.x+"-"+snake.y);
 snake.headCell.classList.add("snake-head");
 
@@ -68,17 +68,17 @@ const moveLeft = ()=> {
 
 //event lisner
 document.addEventListener("keydown" , (e)=> {
-    if(e.key === "ArrowUp"){
-        moveUp();
+    if(e.key === "ArrowUp" && snake.direction!="down"){
+        snake.direction = "up";
     }
-    else if (e.key === "ArrowDown"){
-        moveDown();
+    else if (e.key === "ArrowDown" && snake.direction!="up"){
+        snake.direction = "down";
     }
-    else if (e.key === "ArrowRight"){
-        moveRight();
+    else if (e.key === "ArrowRight" && snake.direction!="left"){
+        snake.direction = "right";
     }
-    else if (e.key === "ArrowLeft"){
-        moveLeft();
+    else if (e.key === "ArrowLeft" && snake.direction!="right"){
+        snake.direction = "left";
     }
 });
 
@@ -154,7 +154,24 @@ const generateFood = ()=> {
         }
     }
 }
+const moveInterval = () => {
+    if(snake.direction === "up"){
+        moveUp();
+    }
+    else if(snake.direction === "down"){
+        moveDown();
+    }
+    else if(snake.direction === "left"){
+        moveLeft();
+    }
+    else if(snake.direction === "right"){
+        moveRight();
+    }
+}
 
+//start the game
 generateFood();
+setInterval(moveInterval , 300);
+
 
 
