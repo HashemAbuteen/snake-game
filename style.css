@@ -1,0 +1,33 @@
+.row {
+    display: flex;
+    gap: 0;
+    justify-content: center;
+}
+.game-container{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#board {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+    border: 5px solid black;
+}
+.cell {
+    width: 5rem;
+    height: 5rem;
+    background-color: #EEE;
+    border: #999 solid 1px;
+}
+.snake-body {
+    background-color: blue;
+}
+.snake-head {
+    background-color: red;
+}
+.food {
+    background-color: green;
+}
