@@ -23,7 +23,7 @@ for(let i = 0 ; i < size.height ; i++){
 //initiate the snake object 
 let y = Math.floor(size.height/2);
 let x = Math.floor(size.width/2);
-const snake = {length: 2 , x , y ,direction:"up"};
+const snake = {length: 2 , x , y ,direction:"up" , lost:false};
 snake.headCell = document.getElementById("cell-"+snake.x+"-"+snake.y);
 snake.headCell.classList.add("snake-head");
 
@@ -85,6 +85,9 @@ document.addEventListener("keydown" , (e)=> {
 //this function decide what to do when player lose
 const lose = ()=>{
     console.log("You lost");
+    snake.lost = true;
+    alert("You lost \n your score is " + snake.length*100);
+    window.location.reload();
 }
 
 
@@ -155,6 +158,9 @@ const generateFood = ()=> {
     }
 }
 const moveInterval = () => {
+    if(snake.lost){
+        return;
+    }
     if(snake.direction === "up"){
         moveUp();
     }
@@ -170,8 +176,11 @@ const moveInterval = () => {
 }
 
 //start the game
-generateFood();
-setInterval(moveInterval , 300);
+const start = ()=>{
+
+    generateFood();
+    setInterval(moveInterval , 300);
+}
 
 
 
