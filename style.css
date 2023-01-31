@@ -26,7 +26,7 @@ body{
     width: 5rem;
     height: 5rem;
     background-color: #EEE;
-    border: #999 solid 1px;
+    /* border: #999 solid 1px; */
 }
 .snake-body {
     background-color: blue;
